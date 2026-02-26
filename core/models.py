@@ -33,10 +33,11 @@ class User(AbstractBaseUser):
         
     email = models.EmailField(unique=True)
     role_choice =(
-        ('owner','owner'),
+        ('admin','admin'),
         ('user','user'),
+        ('servicestaff','servicestaff'),
     )
-    role = models.CharField(max_length=10,choices=role_choice,default='user')
+    role = models.CharField(max_length=100,choices=role_choice,default='user')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)

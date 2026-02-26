@@ -1,11 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Vehicle Vault | Signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <!-- Google Font -->
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -16,25 +16,20 @@
             font-family: 'Poppins', sans-serif;
         }
 
-    
         body {
             min-height: 100vh;
-            background:
-                linear-gradient(
-                    rgba(0,0,0,0.7),
-                    rgba(0,0,0,0.7)
-                ),
-                url("{% static 'core/images/undefined.jpg' %}");
-
+            background: linear-gradient(
+                        rgba(0,0,0,0.7),
+                        rgba(0,0,0,0.7)
+                    ),
+                    url("{% static 'core/images/undefined.jpg' %}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
 
         .signup-wrapper {
             width: 100%;
@@ -88,6 +83,10 @@
             font-size: 14px;
         }
 
+        form input:focus {
+            box-shadow: 0 0 0 2px #ffb703;
+        }
+
         .signup-btn {
             width: 100%;
             padding: 13px;
@@ -122,23 +121,16 @@
             text-decoration: underline;
         }
 
-        .vehicle-img {
-            position: absolute;
-            bottom: 25px;
-            right: 25px;
-            width: 160px;
-            opacity: 0.85;
-        }
-
         @media (max-width: 768px) {
-            .vehicle-img {
-                display: none;
+            .signup-wrapper {
+                margin: 20px;
+                padding: 30px 25px;
             }
         }
     </style>
 </head>
 <body>
-   
+
     <div class="signup-wrapper">
         <div class="brand">
             <h1>Vehicle <span>Vault</span></h1>
