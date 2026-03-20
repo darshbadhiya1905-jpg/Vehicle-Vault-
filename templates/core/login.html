@@ -1,96 +1,124 @@
-
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Login - Vehicle Vault</title>
 
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
+                        url("{% static 'images/car-bg.jpg' %}") no-repeat center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         .login-container {
-            background: #ffffff;
+            background: rgba(10, 10, 10, 0.98); /* darker */
             padding: 40px;
+            border-radius: 20px;
             width: 350px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8); /* stronger shadow */
+            backdrop-filter: blur(10px); /* glass effect */
         }
 
         .login-container h2 {
             margin-bottom: 25px;
-            color: #333;
-        }
-
-        form p {
-            text-align: left;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            font-size: 30px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            transition: 0.3s;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
         }
 
         input:focus {
-            border-color: #667eea;
             outline: none;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+            border: 1px solid #ff3c00;
         }
 
-        button {
+        .btn {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
+            margin-top: 15px;
             border: none;
-            border-radius: 6px;
-            background-color: #667eea;
+            border-radius: 25px;
+            background: #ff3c00;
             color: white;
-            font-size: 16px;
             cursor: pointer;
+            font-size: 16px;
             transition: 0.3s;
         }
 
-        button:hover {
-            background-color: #5a67d8;
+        .btn:hover {
+            background: #ff1e00;
         }
 
-        .login-container a {
-            display: block;
-            margin-top: 15px;
-            text-decoration: none;
-            color: #667eea;
+        .extra-links {
+            margin-top: 18px;
+            font-size: 14px;
+            color: #bbb; /* softer white */
         }
 
-        .login-container a:hover {
+        .extra-links a {
+            color: #ff3c00;
+            font-weight: 600;
+        }
+
+        .extra-links a:hover {
             text-decoration: underline;
         }
+
+        .brand {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+        }
+
     </style>
 </head>
+
 <body>
 
-<div class="login-container">
-    <h2>Login</h2>
+<div class="brand">Vehicle Vault</div>
 
-    <form method="post">
+<div class="login-container">
+    <h2>Welcome Back</h2>
+
+    <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
+        
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit" class="btn">Login</button>
     </form>
 
-   
+    <div class="extra-links">
+        <p>Don't have an account? <a href="/core/signup/">Sign up</a></p>
+    </div>
 </div>
 
 </body>

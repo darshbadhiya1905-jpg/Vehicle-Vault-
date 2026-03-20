@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Vault</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: white;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+                        url("{% static 'images/car-bg.jpg' %}") no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #ccc;
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #ff3c00;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff1e00;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: black;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 40px;
+        }
+
+        .feature-box {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 280px;
+            background: #111;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: #1a1a1a;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 50px;
+            text-align: center;
+            background: #111;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: black;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Vehicle Vault</h1>
+        <p>Your Smart Vehicle Management System</p>
+
+        <a href="/core/signup/">
+            <button class="btn btn-primary">Get Started</button>
+        </a>
+
+        <a href="/core/login/">
+            <button class="btn btn-secondary">Login</button>
+        </a>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <h2>Why Choose Vehicle Vault?</h2>
+
+    <div class="feature-box">
+        <div class="card">
+            <h3>24/7 Access</h3>
+            <p>Manage your vehicles anytime, anywhere.</p>
+        </div>
+
+        <div class="card">
+            <h3>Secure Data</h3>
+            <p>Your vehicle data is encrypted and safe.</p>
+        </div>
+
+        <div class="card">
+            <h3>Easy Tracking</h3>
+            <p>Track repairs, history and documents easily.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Start Managing Your Vehicles Today</h2>
+    <a href="/core/signup/">
+        <button class="btn btn-primary">Create Account</button>
+    </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Vehicle Vault | By Darsh Badhiya | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

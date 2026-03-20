@@ -1,44 +1,46 @@
-from django.shortcuts import render,redirect
-from .forms import UserSignupForm , UserLoginForm
-from django.contrib.auth import authenticate,login
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib import messages
 
-# Create your views here.
-def userSignupView(request):
-    if request.method =="POST":
-      form = UserSignupForm(request.POST or None)
-      if form.is_valid():
-        form.save()
-        return redirect('login') #error
-      else:
-        return render(request,'core/signup.html',{'form':form})  
-    else:
-        form = UserSignupForm()
-        return render(request,'core/signup.html',{'form':form})
-    
+def signup_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
-def userLoginView(request):
-  if request.method =="POST":
-    form = UserLoginForm(request.POST or None)
-    if form.is_valid():
-      print(form.cleaned_data)
-      email = form.cleaned_data['email']
-      password = form.cleaned_data['password']
-      user = authenticate(request,email=email,password=password) #it will check in database..
-      if user:
-        login(request,user)
-        if user.role == "admin":
-          return redirect("admin_dashboard")
-        elif user.role == "user":
-          return redirect("user_dashboard")       
-        elif user.role == "servicestaff":
-          return redirect("servicestaff_dashboard")
-    
-      else:
-        return redirect("login")
-  
-    else:
-      return render(request,'core/login.html',{'form':form})  
-    
-  else:
-    form = UserLoginForm()
-    return render(request,'core/login.html',{'form':form})
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists")
+            return redirect('signup')
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+        user.save()
+
+        messages.success(request, "Account created successfully")
+        return redirect('login')
+
+    return render(request, 'core/signup.html')
+
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            return render(request, 'core/login.html', {'error': 'Invalid credentials'})
+
+    return render(request, 'core/login.html')
+
+
+def home_view(request):
+    return render(request, 'core/home.html')

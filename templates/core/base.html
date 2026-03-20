@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Vehicle Vault</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">Vehicle Vault</div>
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/core/login/">Login</a></li>
+<li><a href="/core/signup/">Signup</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+
+</nav>
+
+{% block content %}
+{% endblock %}
+
+<footer>
+
+<p>Vehicle Vault © 2026 Secure Luxury Car Storage</p>
+
+</footer>
+
+</body>
+</html>

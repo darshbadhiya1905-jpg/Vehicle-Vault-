@@ -3,7 +3,10 @@ from . import views
 
 urlpatterns = [
 
-    path("user/",views.userDashboardView,name="user_dashboard"),
-    path("admin/",views.adminDashboardView,name="admin_dashboard"),
-    path("owner/",views.servicestaffDashboardView,name="servicestaff_dashboard"),
+    path('admin-dashboard/', views.adminDashboardView, name='admin_dashboard'),
+
+    path('user-dashboard/', views.userDashboardView, name='user_dashboard'),
+
+    path('servicestaff-dashboard/', views.servicestaffDashboardView, name='servicestaff_dashboard'),
+
 ]
