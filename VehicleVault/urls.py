@@ -6,12 +6,9 @@ urlpatterns = [
 
     path('', home, name='home'), 
 
-    path('admin/', admin.site.urls), 
-
-    path('core/', include('core.urls')),
-
-    path('parking/', include('Parking.urls')),
-
+    path('admin/', admin.site.urls),
+    
+    path('', include('core.urls')),   # core app
 ]
 
 

@@ -1,38 +1,94 @@
-{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Vault | Premium Asset Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0f1115;
+            --secondary-dark: #1a1d24;
+            --accent-gold: #d4af37;
+            --text-light: #e0e0e0;
+        }
 
-<title>Vehicle Vault</title>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-light);
+            /* This is the default background if no block override exists */
+            background: linear-gradient(rgba(15, 17, 21, 0.85), rgba(15, 17, 21, 0.9)), 
+                        url('https://images.unsplash.com/photo-1596716712398-f29e365e90a9') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+        nav {
+            background: rgba(26, 29, 36, 0.7); /* Translucent navbar */
+            backdrop-filter: blur(10px); /* Blur background behind navbar */
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
+        nav .logo { color: var(--accent-gold); font-size: 24px; font-weight: bold; letter-spacing: 2px; }
+        nav a { color: var(--text-light); text-decoration: none; margin-left: 20px; transition: 0.3s; }
+        nav a:hover { color: var(--accent-gold); }
+
+        .container { padding: 40px; max-width: 1200px; margin: 0 auto; }
+
+        /* Modernized Glassmorphism Card Style */
+        .card {
+            background: rgba(26, 29, 36, 0.5); /* Semi-transparent */
+            backdrop-filter: blur(12px); /* Blurred background for the card */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+    </style>
 </head>
-
 <body>
-
-<nav class="navbar">
-
-<div class="logo">Vehicle Vault</div>
-
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="/core/login/">Login</a></li>
-<li><a href="/core/signup/">Signup</a></li>
-<li><a href="#">Services</a></li>
-<li><a href="#">Contact</a></li>
-</ul>
-
-</nav>
-
-{% block content %}
-{% endblock %}
-
-<footer>
-
-<p>Vehicle Vault © 2026 Secure Luxury Car Storage</p>
-
-</footer>
-
+    <nav>
+        <div class="logo">VEHICLE VAULT</div>
+        <div>
+            <a href="#"><i class="fa-solid fa-home"></i> Home</a>
+            {% if request.user.is_authenticated %}
+                <a href="/parking/dashboard/"><i class="fa-solid fa-car"></i> My Garage</a>
+                <a href="#"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="#"><i class="fa-solid fa-sign-in-alt"></i> Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>

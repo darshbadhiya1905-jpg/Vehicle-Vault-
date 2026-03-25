@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body_style %}
+background: linear-gradient(rgba(15, 17, 21, 0.85), rgba(15, 17, 21, 0.95)), 
+            url('https://images.unsplash.com/photo-1619632431690-3486a4f91e98') no-repeat center center fixed;
+background-size: cover;
+{% endblock %}
+
+{% block content %}
+<div class="card" style="border-left: 5px solid #44ff44;">
+    <h2 style="color: #44ff44; margin-top: 0;"><i class="fa-solid fa-tools"></i> Service Terminal</h2>
+    <p>Assigned work for {{ request.user.username }}. Update your task status here.</p>
+</div>
+
+<div class="card">
+    <h3><i class="fa-solid fa-tasks" style="color: #44ff44;"></i> My Task List</h3>
+    {% for task in my_tasks %}
+        <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px;">
+            <h4>{{ task.vehicle.make }} {{ task.vehicle.model }} ({{ task.vehicle.license_plate }})</h4>
+            <p><strong>Job:</strong> {{ task.service_type }}</p>
+            <p><strong>Status:</strong> <span style="background: rgba(68, 255, 68, 0.2); color: #44ff44; padding: 3px 8px; border-radius: 5px; font-size: 0.9rem;">{{ task.status }}</span></p>
+            
+            <div style="margin-top: 15px; display: flex; gap: 10px;">
+            {% if task.status == 'Assigned' %}
+                <button class="btn" style="background-color: #44ff44; color: black; padding: 10px 20px;">Start Job</button>
+            {% elif task.status == 'In Progress' %}
+                <button class="btn" style="background-color: var(--accent-gold); color: black; padding: 10px 20px;">Mark Completed</button>
+            {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>No assigned tasks right now.</p>
+    {% endfor %}
+</div>
+{% endblock %}

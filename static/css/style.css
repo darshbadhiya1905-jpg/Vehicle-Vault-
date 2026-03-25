@@ -1,107 +1,177 @@
-body{
-margin:0;
-font-family:Arial;
-background:#111;
-color:white;
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f0f0f;
+    color: white;
 }
 
-.navbar{
-display:flex;
-justify-content:space-between;
-padding:20px;
-background:black;
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-.navbar ul{
-display:flex;
-gap:25px;
-list-style:none;
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.navbar a{
-color:white;
-text-decoration:none;
+.nav-links a {
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
 }
 
-.hero{
-height:90vh;
-background:url("/static/image/hero.jpg");
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
+.login {
+    color: #ccc;
 }
 
-.hero-text{
-text-align:center;
-background:rgba(0,0,0,0.6);
-padding:40px;
-border-radius:10px;
+.login:hover {
+    color: white;
 }
 
-.btn{
-background:red;
-padding:12px 20px;
-text-decoration:none;
-color:white;
+.signup-btn {
+    background: #00c6ff;
+    color: black;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-.services{
-padding:60px;
-text-align:center;
+.signup-btn:hover {
+    background: #00a8d6;
 }
 
-.service-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:30px;
-margin-top:40px;
+/* HERO */
+.hero {
+    height: 100vh;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.75)
+    ),
+    url("../images/car-bg.jpg");
+    
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.card{
-background:#222;
-padding:20px;
-border-radius:10px;
+.hero-title {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
-.card img{
-width:100%;
-border-radius:10px;
+.hero-title span {
+    color: #00c6ff;
 }
 
-.login-section{
-height:90vh;
-background:url("/static/image/garage.jpg");
-background-size:cover;
-display:flex;
-justify-content:center;
-align-items:center;
+.hero p {
+    font-size: 18px;
+    opacity: 0.8;
+    margin-top: 15px;
 }
 
-.login-container{
-background:rgba(0,0,0,0.7);
-padding:40px;
-border-radius:10px;
+.hero h1 {
+    font-size: 50px;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-.login-container input{
-display:block;
-width:250px;
-margin:10px 0;
-padding:10px;
+.hero p {
+    margin-top: 10px;
+    font-size: 18px;
 }
 
-.login-container button{
-background:red;
-border:none;
-padding:10px;
-color:white;
-width:100%;
+.hero-content { 
+    max-width: 700px;
 }
 
-footer{
-text-align:center;
-padding:20px;
-background:black;
+.buttons {
+    margin-top: 20px;
+}
+
+.primary-btn {
+    background: #00c6ff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.secondary-btn {
+    border: 1px solid white;
+    padding: 12px 25px;
+    text-decoration: none;
+    color: white;
+}
+
+/* FEATURES */
+.features {
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* CTA */
+.cta {
+    padding: 80px;
+    text-align: center;
+    background: #111;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: black;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
 }

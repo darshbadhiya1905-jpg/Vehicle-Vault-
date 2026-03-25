@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body_style %}
+background: linear-gradient(rgba(15, 17, 21, 0.85), rgba(15, 17, 21, 0.95)), 
+            url('https://images.unsplash.com/photo-1563720225384-9d0b42908f02') no-repeat center center fixed;
+background-size: cover;
+{% endblock %}
+
+{% block content %}
+<div class="card" style="border-left: 5px solid #ff4444;">
+    <h2 style="color: #ff4444; margin-top: 0;"><i class="fa-solid fa-building-shield"></i> Operations Center</h2>
+    <p>Overview of all Vehicle Vault assets and staffing.</p>
+</div>
+
+<div class="card">
+    <h3><i class="fa-solid fa-clipboard-list" style="color: #ff4444;"></i> Pending Manager Approvals</h3>
+    {% for task in pending_tasks %}
+        <div style="background: rgba(0,0,0,0.5); padding: 15px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+            <p style="margin: 0;"><strong>{{ task.vehicle.license_plate }}</strong> requested {{ task.service_type }}</p>
+            <button class="btn" style="background-color: #ff4444; color: white;">Assign Staff</button>
+        </div>
+    {% empty %}
+        <p>No pending requests.</p>
+    {% endfor %}
+</div>
+
+<div class="card">
+    <h3><i class="fa-solid fa-warehouse" style="color: var(--accent-gold);">s</i> Stored Inventory</h3>
+    <p>Total Assets: <strong>{{ all_vehicles.count }}</strong></p>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    {% for car in all_vehicles %}
+        <span style="display: inline-block; padding: 5px 10px; background: rgba(212, 175, 55, 0.2); border: 1px solid var(--accent-gold); color: var(--accent-gold); border-radius: 20px; font-size: 0.8rem;">{{ car.license_plate }}</span>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

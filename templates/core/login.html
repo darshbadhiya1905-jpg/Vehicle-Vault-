@@ -1,125 +1,65 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login - Vehicle Vault</title>
+<meta charset="UTF-8">
+<title>Login - Vehicle Vault</title>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<style>
+body {
+  background: #0a0a0a;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-        body {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
-                        url("{% static 'images/car-bg.jpg' %}") no-repeat center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
 
-        .login-container {
-            background: rgba(10, 10, 10, 0.98); /* darker */
-            padding: 40px;
-            border-radius: 20px;
-            width: 350px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8); /* stronger shadow */
-            backdrop-filter: blur(10px); /* glass effect */
-        }
+.hero {
+  background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7') center/cover no-repeat;
+  position: relative;
+}
 
-        .login-container h2 {
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
-            font-size: 30px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            background: #111;
-            color: white;
-        }
-
-        input:focus {
-            outline: none;
-            border: 1px solid #ff3c00;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 25px;
-            background: #ff3c00;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #ff1e00;
-        }
-
-        .extra-links {
-            margin-top: 18px;
-            font-size: 14px;
-            color: #bbb; /* softer white */
-        }
-
-        .extra-links a {
-            color: #ff3c00;
-            font-weight: 600;
-        }
-
-        .extra-links a:hover {
-            text-decoration: underline;
-        }
-
-        .brand {
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            font-size: 22px;
-            font-weight: bold;
-            color: white;
-        }
-
-    </style>
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  top: 0;
+  left: 0;
+}
+</style>
 </head>
 
 <body>
 
-<div class="brand">Vehicle Vault</div>
+<section class="hero min-h-screen flex items-center justify-center">
+  <div class="relative z-10 glass p-10 rounded-2xl w-full max-w-md">
 
-<div class="login-container">
-    <h2>Welcome Back</h2>
+    <h2 class="text-3xl font-bold mb-6 text-center">Welcome Back</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+        <p class="text-red-400 text-center mb-4">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
 
     <form method="POST">
-        {% csrf_token %}
-        
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Enter Username">
+    <input type="password" name="password" placeholder="Enter Password">
+    <button type="submit">Login</button>
+</form>
 
-        <button type="submit" class="btn">Login</button>
-    </form>
+<p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
 
-    <div class="extra-links">
-        <p>Don't have an account? <a href="/core/signup/">Sign up</a></p>
-    </div>
-</div>
+
+  </div>
+</section>
 
 </body>
 </html>

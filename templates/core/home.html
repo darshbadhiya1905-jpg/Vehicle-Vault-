@@ -1,175 +1,133 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vehicle Vault</title>
+<meta charset="UTF-8">
+<title>Vehicle Vault</title>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<style>
+body {
+  background: #0a0a0a;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-        body {
-            background: #0a0a0a;
-            color: white;
-        }
+/* Glass Effect */
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
 
-        /* HERO SECTION */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-                        url("{% static 'images/car-bg.jpg' %}") no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+/* Hero Background */
+.hero {
+  background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') center/cover no-repeat;
+  position: relative;
+}
 
-        .hero-content h1 {
-            font-size: 60px;
-            font-weight: 700;
-        }
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  top: 0;
+  left: 0;
+}
 
-        .hero-content p {
-            margin-top: 15px;
-            font-size: 20px;
-            color: #ccc;
-        }
-
-        .btn {
-            margin-top: 25px;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-primary {
-            background: #ff3c00;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #ff1e00;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid white;
-            color: white;
-            margin-left: 10px;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: black;
-        }
-
-        /* FEATURES */
-        .features {
-            padding: 60px 10%;
-            text-align: center;
-        }
-
-        .features h2 {
-            margin-bottom: 40px;
-        }
-
-        .feature-box {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            width: 280px;
-            background: #111;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 15px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            background: #1a1a1a;
-        }
-
-        /* CTA */
-        .cta {
-            padding: 50px;
-            text-align: center;
-            background: #111;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: black;
-            color: gray;
-        }
-    </style>
+/* Card Hover */
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  transition: 0.3s ease;
+}
+</style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Vehicle Vault</h1>
-        <p>Your Smart Vehicle Management System</p>
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-10 py-5 glass fixed w-full z-50">
+  <h1 class="text-2xl font-bold">Vehicle Vault</h1>
+  <div class="space-x-6">
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'signup' %}">Sign Up</a>
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+</nav>
 
-        <a href="/core/signup/">
-            <button class="btn btn-primary">Get Started</button>
-        </a>
+<!-- HERO SECTION -->
+<section class="hero h-screen flex items-center justify-center text-center">
+  <div class="relative z-10 max-w-3xl px-4">
 
-        <a href="/core/login/">
-            <button class="btn btn-secondary">Login</button>
-        </a>
+    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+      Manage Your Vehicle <br>
+      <span class="text-gray-300">Like Never Before</span>
+    </h1>
+
+    <p class="text-lg text-gray-400 mb-8">
+      Track, maintain and control your vehicle with a powerful dashboard.
+    </p>
+
+    <div class="space-x-4">
+      <a href="/signup/"
+        class="bg-white text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">
+        Get Started
+      </a>
+
+      <a href="/login/"
+        class="border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">
+        Login
+      </a>
     </div>
+
+  </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features">
-    <h2>Why Choose Vehicle Vault?</h2>
+<!-- DASHBOARD PREVIEW -->
+<section class="py-20 px-10">
 
-    <div class="feature-box">
-        <div class="card">
-            <h3>24/7 Access</h3>
-            <p>Manage your vehicles anytime, anywhere.</p>
-        </div>
+  <h2 class="text-3xl font-bold text-center mb-12">
+    Your Smart Vehicle Dashboard
+  </h2>
 
-        <div class="card">
-            <h3>Secure Data</h3>
-            <p>Your vehicle data is encrypted and safe.</p>
-        </div>
+  <div class="grid md:grid-cols-3 gap-8">
 
-        <div class="card">
-            <h3>Easy Tracking</h3>
-            <p>Track repairs, history and documents easily.</p>
-        </div>
+    <!-- Card 1 -->
+    <div class="glass p-6 rounded-2xl card">
+      <h3 class="text-xl font-semibold mb-4">Fuel Monitoring</h3>
+      <p class="text-gray-400">Track fuel usage and get alerts before it runs low.</p>
     </div>
+
+    <!-- Card 2 -->
+    <div class="glass p-6 rounded-2xl card">
+      <h3 class="text-xl font-semibold mb-4">Service Alerts</h3>
+      <p class="text-gray-400">Stay updated with maintenance schedules.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="glass p-6 rounded-2xl card">
+      <h3 class="text-xl font-semibold mb-4">Documents</h3>
+      <p class="text-gray-400">Access RC, insurance, and documents anytime.</p>
+    </div>
+
+  </div>
+
 </section>
 
-<!-- CTA -->
-<section class="cta">
-    <h2>Start Managing Your Vehicles Today</h2>
-    <a href="/core/signup/">
-        <button class="btn btn-primary">Create Account</button>
-    </a>
-</section>
+<!-- CTA SECTION -->
+<section class="py-20 text-center">
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 Vehicle Vault | By Darsh Badhiya | All Rights Reserved</p>
-</footer>
+  <h2 class="text-4xl font-bold mb-6">
+    Ready to Upgrade Your Ride?
+  </h2>
+
+  <a href="/signup/"
+    class="bg-white text-black px-8 py-4 rounded-xl font-semibold hover:scale-105 transition">
+    Add Your Vehicle
+  </a>
+
+</section>
 
 </body>
 </html>
